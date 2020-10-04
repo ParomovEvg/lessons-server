@@ -8,6 +8,9 @@ export class Cat {
   @Column({ unique: true })
   email: string;
 
-  @Column({})
+  @Column()
   name: string;
+
+  @Column({ type: 'text' })
+  hey: string;
 }

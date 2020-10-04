@@ -1,9 +1,9 @@
-version: "3.7"
+version: '3.7'
 
 services:
   main:
     container_name: main
-    build: 
+    build:
       context: .
       target: development
     volumes:
@@ -32,8 +32,20 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - ../pgdata:/var/lib/postgresql/data
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres
+    ports:
+      - 5555:80
+    networks:
+      - webnet
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+    restart: always
+
 networks:
   webnet:
-volumes:
-  pgdata:

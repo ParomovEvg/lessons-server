@@ -6,6 +6,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { Env } from "./Env";
 import { InitDataService } from "./init-data/init-data.service";
 import { CatsModule } from "./cats/cats.module";
+import { TodoModule } from './todo/todo.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { CatsModule } from "./cats/cats.module";
       inject: [ConfigService],
     }),
     CatsModule,
+    TodoModule,
   ],
   controllers: [AppController],
   providers: [AppService, InitDataService],
